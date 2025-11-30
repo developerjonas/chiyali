@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chiyali | Brewing Soon</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;400;500;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        chai: {
+                            50: '#fdf8f6',
+                            100: '#f2e8e5',
+                            200: '#eaddd7',
+                            300: '#e0c1b3',
+                            400: '#d2a48f',
+                            500: '#b87c61', // Main Terracotta
+                            600: '#9d634b',
+                            700: '#83503c',
+                            800: '#6d4233',
+                            900: '#59382e',
+                            950: '#2f1c17', // Dark Roast
+                        },
+                        cream: '#F9F5F0',
+                    },
+                    fontFamily: {
+                        sans: ['DM Sans', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'steam': 'steam 3s ease-out infinite',
+                        'fade-in-up': 'fadeInUp 0.8s ease-out forwards',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        },
+                        steam: {
+                            '0%': { opacity: '0', transform: 'translateY(0) scale(1)' },
+                            '50%': { opacity: '0.5', transform: 'translateY(-10px) scale(1.1)' },
+                            '100%': { opacity: '0', transform: 'translateY(-25px) scale(1.2)' },
+                        },
+                        fadeInUp: {
+                            '0%': { opacity: '0', transform: 'translateY(20px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        body {
+            background-color: #F9F5F0;
+            color: #2f1c17;
+        }
+        .text-gradient {
+            background: linear-gradient(to right, #b87c61, #83503c);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .hero-pattern {
+            background-image: radial-gradient(#d2a48f 1px, transparent 1px);
+            background-size: 40px 40px;
+            opacity: 0.15;
+        }
+    </style>
+</head>
+<body class="antialiased min-h-screen flex flex-col relative overflow-x-hidden">
+
+    <!-- Background Pattern -->
+    <div class="absolute inset-0 hero-pattern z-0 pointer-events-none"></div>
+
+    <!-- Decoration Circle -->
+    <div class="absolute top-0 right-0 -mr-20 -mt-20 w-96 h-96 bg-chai-200 rounded-full blur-3xl opacity-30 z-0"></div>
+    <div class="absolute bottom-0 left-0 -ml-20 -mb-20 w-80 h-80 bg-orange-200 rounded-full blur-3xl opacity-30 z-0"></div>
+
+    <!-- Navigation -->
+    <nav class="relative z-10 w-full px-6 py-6 flex justify-between items-center max-w-7xl mx-auto">
+        <div class="flex items-center gap-2">
+            <!-- Simple SVG Logo Placeholder -->
+            <div class="w-10 h-10 bg-chai-600 rounded-full flex items-center justify-center text-white">
+                <i data-lucide="cup-soda" class="w-5 h-5"></i>
+            </div>
+            <span class="font-serif text-2xl font-bold tracking-tight text-chai-900">Chiyali</span>
+        </div>
+        <div>
+            <a href="mailto:hello@chiyali.com" class="text-sm font-medium text-chai-700 hover:text-chai-900 transition-colors">Contact Us</a>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="relative z-10 flex-grow flex items-center justify-center px-6 py-12 lg:py-20">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+            
+            <!-- Left Column: Copy -->
+            <div class="space-y-8 opacity-0 animate-fade-in-up" style="animation-delay: 0.2s;">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-chai-100 text-chai-800 text-xs font-bold uppercase tracking-wider">
+                    <span class="w-2 h-2 rounded-full bg-chai-600 animate-pulse"></span>
+                    Coming Soon
+                </div>
+                
+                <h1 class="font-serif text-5xl lg:text-7xl font-bold leading-[1.1] text-chai-950">
+                    Your new favorite <br>
+                    <span class="text-gradient">Tea Ritual.</span>
+                </h1>
+                
+                <p class="text-lg text-chai-700 max-w-lg leading-relaxed">
+                    Chiyali is redefining the <em>chai</em> experience. From nostalgic kulhad blends to modern artisanal pours, we are building a space for connection, conversation, and the perfect cup.
+                </p>
+
+                <!-- Email Form -->
+                <div class="max-w-md">
+                    <form id="waitlistForm" class="relative group" onsubmit="handleSubscribe(event)">
+                        <div class="flex flex-col sm:flex-row gap-3">
+                            <input 
+                                type="email" 
+                                required
+                                placeholder="Enter your email address" 
+                                class="w-full px-5 py-4 bg-white border border-chai-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-chai-500/20 focus:border-chai-500 transition-all shadow-sm placeholder:text-chai-300 text-chai-900"
+                            >
+                            <button 
+                                type="submit" 
+                                class="px-8 py-4 bg-chai-900 hover:bg-chai-800 text-white font-medium rounded-xl transition-all shadow-lg shadow-chai-900/20 flex items-center justify-center gap-2 whitespace-nowrap active:scale-95"
+                            >
+                                <span>Join Waitlist</span>
+                                <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                            </button>
+                        </div>
+                        <p class="mt-3 text-sm text-chai-500 flex items-center gap-1">
+                            <i data-lucide="gift" class="w-3 h-3"></i>
+                            <span>Get a free tea on our launch day.</span>
+                        </p>
+                        
+                        <!-- Success Message (Hidden by default) -->
+                        <div id="successMessage" class="hidden absolute top-0 left-0 w-full h-full bg-white/90 backdrop-blur-sm rounded-xl flex items-center justify-center border border-green-200 text-green-800 font-medium">
+                            <div class="flex items-center gap-2">
+                                <i data-lucide="check-circle" class="w-5 h-5 text-green-600"></i>
+                                You're on the list!
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Social Proof / Trust -->
+                <div class="pt-4 flex items-center gap-6 text-chai-400">
+                    <div class="flex -space-x-3">
+                        <div class="w-10 h-10 rounded-full border-2 border-cream bg-chai-200 flex items-center justify-center text-xs overflow-hidden">
+                            <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Felix" alt="User">
+                        </div>
+                        <div class="w-10 h-10 rounded-full border-2 border-cream bg-chai-300 flex items-center justify-center text-xs overflow-hidden">
+                            <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Aneka" alt="User">
+                        </div>
+                        <div class="w-10 h-10 rounded-full border-2 border-cream bg-chai-400 flex items-center justify-center text-xs overflow-hidden">
+                            <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Zoe" alt="User">
+                        </div>
+                    </div>
+                    <div class="text-sm font-medium text-chai-600">
+                        Join 2,000+ tea lovers waiting.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Column: Visuals/Cards -->
+            <div class="relative opacity-0 animate-fade-in-up" style="animation-delay: 0.4s;">
+                <!-- Main Visual -->
+                <div class="relative z-10 bg-white p-2 rounded-3xl shadow-2xl shadow-chai-900/10 rotate-2 hover:rotate-0 transition-transform duration-500">
+                    <div class="relative bg-chai-100 rounded-2xl overflow-hidden aspect-[4/3] group">
+                        <!-- Placeholder Image using gradient and icon if real image fails -->
+                        <div class="absolute inset-0 bg-gradient-to-br from-chai-800 to-chai-950 flex items-center justify-center text-white">
+                             <!-- Steam Animation -->
+                            <div class="absolute top-1/2 left-1/2 -mt-16 ml-4">
+                                <div class="w-2 h-10 bg-white/20 blur-md rounded-full absolute -ml-4 animate-steam" style="animation-delay: 0s;"></div>
+                                <div class="w-2 h-12 bg-white/20 blur-md rounded-full absolute ml-0 animate-steam" style="animation-delay: 1s;"></div>
+                                <div class="w-2 h-8 bg-white/20 blur-md rounded-full absolute ml-4 animate-steam" style="animation-delay: 0.5s;"></div>
+                            </div>
+                            <i data-lucide="coffee" class="w-24 h-24 stroke-[1.5]"></i>
+                        </div>
+                        
+                        <!-- Overlay Text -->
+                        <div class="absolute bottom-0 left-0 w-full p-6 bg-gradient-to-t from-black/60 to-transparent">
+                            <p class="text-white/80 text-sm font-medium uppercase tracking-widest mb-1">The Signature</p>
+                            <p class="text-white text-2xl font-serif">Masala Chai Latte</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Floating Feature Card 1 -->
+                <div class="absolute -bottom-10 -left-10 z-20 bg-white p-5 rounded-2xl shadow-xl shadow-chai-900/10 max-w-[220px] animate-float" style="animation-delay: 0s;">
+                    <div class="w-10 h-10 bg-orange-100 rounded-full flex items-center justify-center text-orange-600 mb-3">
+                        <i data-lucide="chef-hat" class="w-5 h-5"></i>
+                    </div>
+                    <h3 class="font-bold text-chai-900 mb-1">Modern Eats</h3>
+                    <p class="text-xs text-chai-500 leading-relaxed">Bun Maska sliders & fusion parathas designed for the modern palate.</p>
+                </div>
+
+                <!-- Floating Feature Card 2 -->
+                <div class="absolute -top-10 -right-5 z-20 bg-white p-5 rounded-2xl shadow-xl shadow-chai-900/10 max-w-[200px] animate-float" style="animation-delay: 2s;">
+                    <div class="w-10 h-10 bg-chai-100 rounded-full flex items-center justify-center text-chai-700 mb-3">
+                        <i data-lucide="sliders-horizontal" class="w-5 h-5"></i>
+                    </div>
+                    <h3 class="font-bold text-chai-900 mb-1">Your Way</h3>
+                    <p class="text-xs text-chai-500 leading-relaxed">Over 12,000 ways to customize your cup.</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="relative z-10 w-full px-6 py-8 border-t border-chai-200/50 mt-auto">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+            <p class="text-sm text-chai-500">© 2024 Chiyali. All rights reserved.</p>
+            <div class="flex gap-6">
+                <a href="#" class="text-chai-400 hover:text-chai-700 transition-colors"><i data-lucide="instagram" class="w-5 h-5"></i></a>
+                <a href="#" class="text-chai-400 hover:text-chai-700 transition-colors"><i data-lucide="twitter" class="w-5 h-5"></i></a>
+                <a href="#" class="text-chai-400 hover:text-chai-700 transition-colors"><i data-lucide="facebook" class="w-5 h-5"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // Initialize Icons
+        lucide.createIcons();
+
+        // Handle Form Subscribe
+        function handleSubscribe(e) {
+            e.preventDefault();
+            const btn = e.target.querySelector('button');
+            const originalBtnContent = btn.innerHTML;
+            
+            // Simulate loading
+            btn.innerHTML = '<div class="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>';
+            
+            setTimeout(() => {
+                // Show success
+                const successMsg = document.getElementById('successMessage');
+                successMsg.classList.remove('hidden');
+                
+                // Reset (optional, for demo)
+                // setTimeout(() => {
+                //     successMsg.classList.add('hidden');
+                //     btn.innerHTML = originalBtnContent;
+                //     e.target.reset();
+                // }, 3000);
+            }, 1500);
+        }
+    </script>
+</body>
+</html>
